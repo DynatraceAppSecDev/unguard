@@ -20,7 +20,7 @@
     "node-sass-middleware": "^0.11.0",
     "nunjucks": "^3.2.2",
     "winston": "^3.3.3",
-    "jquery": "3.5.1"
+    "jquery": "3.7.1"
   },
   "scripts": {
     "start": "node app.js",
