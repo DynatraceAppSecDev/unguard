@@ -21,8 +21,8 @@ build:
     # context is the directory with the Dockerfile for that image
     - image: unguard-envoy-proxy
       context: src/envoy-proxy
-    - image: unguard-frontend
-      context: src/frontend-nextjs
+    # - image: unguard-frontend
+    #   context: src/frontend-nextjs
     - image: unguard-microblog-service # adapt jib patch index below if you move this item
       context: src/microblog-service
     - image: unguard-proxy-service
@@ -81,8 +81,8 @@ deploy:
           envoyProxy.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_envoy_proxy}}"
           envoyProxy.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_envoy_proxy}}@{{.IMAGE_DIGEST_unguard_envoy_proxy}}"
           # frontend
-          frontend.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_frontend}}"
-          frontend.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_frontend}}@{{.IMAGE_DIGEST_unguard_frontend}}"
+          # frontend.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_frontend}}"
+          # frontend.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_frontend}}@{{.IMAGE_DIGEST_unguard_frontend}}"
           # microblog-service
           microblogService.deployment.container.image.repository: "{{.IMAGE_REPO_unguard_microblog_service }}"
           microblogService.deployment.container.image.tag: "{{.IMAGE_TAG_unguard_microblog_service }}@{{.IMAGE_DIGEST_unguard_microblog_service }}"
