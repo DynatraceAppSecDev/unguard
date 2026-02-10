@@ -97,7 +97,7 @@ jobs:
               "version": "${{ env.IMAGE_TAG }}"
             }
 
-      - name: Publish Helm chart to GHCR
-        run: |
-          helm package chart
-          helm push unguard-${{ env.IMAGE_TAG }}.tgz oci://${{ vars.REGISTRY }}/${{ github.repository }}/chart
+      # - name: Publish Helm chart to GHCR
+      #   run: |
+      #     helm package chart
+      #     helm push unguard-${{ env.IMAGE_TAG }}.tgz oci://${{ vars.REGISTRY }}/${{ github.repository }}/chart
