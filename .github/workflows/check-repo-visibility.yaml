@@ -1,0 +1,23 @@
+name: Check Repository Visibility
+on:
+  workflow_dispatch:
+
+jobs:
+  check-visibility:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check repository visibility
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VISIBILITY=$(gh api repos/${{ github.repository }} --jq '.visibility')
+          echo "Repository visibility: $VISIBILITY"
+          if [ "$VISIBILITY" = "public" ]; then
+            echo "This repository is PUBLIC"
+          elif [ "$VISIBILITY" = "private" ]; then
+            echo "This repository is PRIVATE"
+          else
+            echo "This repository is INTERNAL"
+          fi
