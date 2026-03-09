@@ -5,6 +5,9 @@ on:
       - main
       - 'release/**'
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   build:
     name: Publish on container registry
