@@ -9,7 +9,6 @@ on:
 
 env:
   UPSTREAM_REGISTRY: ghcr.io/dynatrace-oss/unguard
-  TARGET_REGISTRY: ${{ vars.REGISTRY }}/${{ github.repository }}
 
 jobs:
   mirror:
@@ -33,6 +32,10 @@ jobs:
           - unguard-user-auth-service
           - unguard-user-simulator
     steps:
+      - name: Set target registry (lowercase)
+        run: |
+          echo "TARGET_REGISTRY=$(echo '${{ vars.REGISTRY }}/${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
