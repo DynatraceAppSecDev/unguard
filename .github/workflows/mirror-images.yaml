@@ -1,0 +1,69 @@
+name: Mirror upstream images
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Upstream image version tag to mirror (e.g. 0.13.0)'
+        required: true
+        default: '0.13.0'
+
+env:
+  UPSTREAM_REGISTRY: ghcr.io/dynatrace-oss/unguard
+
+jobs:
+  mirror:
+    name: Mirror images from upstream
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        image:
+          - unguard-ad-service
+          - unguard-envoy-proxy
+          - unguard-exploit-toolkit
+          - unguard-frontend
+          - unguard-like-service
+          - unguard-malicious-load-generator
+          - unguard-membership-service
+          - unguard-microblog-service
+          - unguard-payment-service
+          - unguard-profile-service
+          - unguard-proxy-service
+          - unguard-status-service
+          - unguard-user-auth-service
+          - unguard-user-simulator
+    steps:
+      - name: Set target registry (lowercase)
+        run: |
+          echo "TARGET_REGISTRY=$(echo '${{ vars.REGISTRY }}/${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ vars.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull upstream image
+        run: |
+          docker pull ${{ env.UPSTREAM_REGISTRY }}/${{ matrix.image }}:${{ inputs.version }}
+
+      - name: Tag image for target registry
+        run: |
+          docker tag \
+            ${{ env.UPSTREAM_REGISTRY }}/${{ matrix.image }}:${{ inputs.version }} \
+            ${{ env.TARGET_REGISTRY }}/${{ matrix.image }}:${{ inputs.version }}
+
+      - name: Push image to target registry
+        run: |
+          docker push ${{ env.TARGET_REGISTRY }}/${{ matrix.image }}:${{ inputs.version }}
+
+      - name: Verify digest
+        run: |
+          echo "=== Upstream digest ==="
+          docker inspect --format='{{index .RepoDigests 0}}' \
+            ${{ env.UPSTREAM_REGISTRY }}/${{ matrix.image }}:${{ inputs.version }}
+          echo ""
+          echo "=== Target digest ==="
+          docker inspect --format='{{index .RepoDigests 0}}' \
+            ${{ env.TARGET_REGISTRY }}/${{ matrix.image }}:${{ inputs.version }} 2>/dev/null || \
+            echo "(digest will be assigned by registry after push)"
