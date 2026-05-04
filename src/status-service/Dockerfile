@@ -20,7 +20,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o status-service .
 
 # GO Repo base repo
-FROM alpine:latest
+FROM alpine:3.23.4
 
 RUN apk --no-cache add ca-certificates
 
