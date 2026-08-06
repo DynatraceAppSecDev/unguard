@@ -11,7 +11,7 @@
         "php": "^8.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "7.4.3",
+        "guzzlehttp/guzzle": "7.4.5",
         "laravel/framework": "8.22.0",
         "laravel/tinker": "^2.0",
         "open-telemetry/exporter-otlp": "^1.0.0RC1",
