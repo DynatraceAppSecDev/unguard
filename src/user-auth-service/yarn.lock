@@ -1132,10 +1132,10 @@ jws@^3.2.2:
     jwa "^1.4.1"
     safe-buffer "^5.0.1"
 
-jwt-simple@0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/jwt-simple/-/jwt-simple-0.5.2.tgz#2885ce74e2a936d417a57ab135c68c7fda3b3b40"
-  integrity sha512-2gru6jHTYkmxBCP/GKWhpN4Tp7w7HA5jC4UH2lgFptEIS82eqbqJYFHNS9SDhl2p49xQzvGWbIarup3oFCbCVw==
+jwt-simple@0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/jwt-simple/-/jwt-simple-0.5.6.tgz#3357adec55b26547114157be66748995b75b333a"
+  integrity sha512-40aUybvhH9t2h71ncA1/1SbtTNCVZHgsTsTgqPUxGWDmUDrXyDf2wMNQKEbdBjbf4AI+fQhbECNTV6lWxQKUzg==
 
 keyv@^3.0.0:
   version "3.1.0"
