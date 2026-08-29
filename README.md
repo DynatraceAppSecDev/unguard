@@ -3,7 +3,7 @@
 **Unguard** (🇦🇹 [ˈʊnˌɡuːat] like disquieting, 🇫🇷 [ãˈɡard] like the fencing command) is an **insecure** cloud-native
 microservices demo application. It consists of eight app services, a load generator, and two databases. Unguard
 encompasses vulnerabilities like server-side request forgery (SSRF), Command/SQL injection, JWT key confusion,
-remote code execution and many more.
+remote code execution and many more. 
 
 The application is a web-based Twitter clone where users can register/login, post text, URLs and images and follow users.
 Unguard also features fake ads, a possibility to edit your biography and manage your membership.
